@@ -11,9 +11,7 @@
 .titleOne {
     color: var(--primary-light);
     font-size: 20px;
-    margin-bottom: 0;
-    margin-top: 10px;
-    margin-left: 15px;
+    margin: 10px 15px 0 15px;
     font-weight: 700;
 }
 
@@ -25,12 +23,12 @@
     color: var(--warn-dark);
     font-size: 16px;
     font-weight: 700;
-    margin: 10px 0 0 15px;
+    margin: 10px 15px 0 15px;
 }
 
 .description {
     font-size: 14px;
     font-weight: 500;
     color: var(--warn-light);
-    margin: 15px 0 0 15px;
+    margin: 15px 15px 0 15px;
 }
