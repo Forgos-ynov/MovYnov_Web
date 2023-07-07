@@ -1,0 +1,50 @@
+@import "./DefineColor.css";
+
+table {
+    align-self: center;
+    justify-content: left;
+    width: 85%;
+    color: var(--light);
+    border-collapse: collapse;
+    border: none;
+    text-align: left;
+}
+
+th, td {
+    padding-left: 15px;
+    height: 40px;
+    border: none;
+    text-align: left;
+}
+
+thead tr {
+    background-color: var(--primary-light);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--primary-light);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--primary-dark);
+}
+
+.id {
+    width: 5%;
+}
+
+.pseudo {
+    width: 20%;
+}
+
+.email {
+    width: 30%;
+}
+
+.spoilers {
+    width: 10%;
+}
+
+.trash {
+    width: 35%;
+}

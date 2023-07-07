@@ -1,0 +1,12 @@
+@import "../../../css/DefineColor.css";
+
+.backForward {
+    height: 38px;
+    width: 84px;
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 15px;
+    position: fixed;
+    top: 100px;
+    right: 45px;
+}
