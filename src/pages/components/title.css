@@ -1,0 +1,8 @@
+@import "../../css/DefineColor.css";
+
+.title {
+    margin-top: 50px;
+    text-align: center;
+    color: var(--light);
+    font-size: 50px ;
+}

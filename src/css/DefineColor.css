@@ -1,0 +1,15 @@
+:root {
+    --dark: #000000;
+    --light: #ffffff;
+    --primary-dark: #854DFF;
+    --primary-light: #A880FF;
+    --warn-dark: #E41A1A;
+    --warn-light: #EA4747;
+}
+
+.body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--dark);
+    flex-direction: column;
+}
