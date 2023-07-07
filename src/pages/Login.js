@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "../css/login.css"
 import AuthApi from "../services/AuthApi";
 import { useNavigate  } from 'react-router-dom';
-import Title from "./components/Title";
+import Title from "./components/Title/Title";
 
 const Login = () => {
     const [email, setEmail] = useState("");

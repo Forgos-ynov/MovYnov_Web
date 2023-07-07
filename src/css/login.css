@@ -1,7 +1,5 @@
 @import "./DefineColor.css";
 
-
-
 .form {
     color: var(--light);
     margin-top: 150px;

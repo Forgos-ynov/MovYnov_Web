@@ -14,8 +14,8 @@ export default function App() {
             <Route path="/login" element={<LoginPage />} index={true}/>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/forum/:idPost" element={<Comments />} />
+            <Route path="/forums" element={<Forum />} />
+            <Route path="/forums/:idPost" element={<Comments />} />
             <Route path="*" element={<Error404 />} />
         </Routes>
     );
