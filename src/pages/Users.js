@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import Title from "./components/Title/Title";
 import "../css/users.css"
 import BackForward from "./components/BackForward/BackForward";
-import UserApi from "../services/UserApi";
+import {retrieveAllUsers} from "../services/UserApi";
+import ModalUsers from "./components/ModalUsers/ModalUsers";
 
 const Users = () => {
     const [users, setUsers] = useState([])
@@ -12,7 +13,7 @@ const Users = () => {
 
     const fetchUsers = async () => {
         try {
-            const data = await UserApi.retrieveAllUsers();
+            const data = await retrieveAllUsers();
             setUsers(data);
         } catch (e) {
             console.log(e);
@@ -25,12 +26,12 @@ const Users = () => {
 
     const _users = users.map((user) => {
         return (
-            <tr>
+            <tr key={user.id}>
                 <td className={"id"}>{user.id}</td>
                 <td className={"pseudo"}>{user.pseudo}</td>
                 <td className={"email"}>{user.email}</td>
                 <td className="spoilers">{user.spoilers ? "Oui" : "Non"}</td>
-                <td className={"trash"}></td>
+                <td className={"trash"}><ModalUsers user={user} /></td>
             </tr>
         )
     })
