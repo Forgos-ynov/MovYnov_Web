@@ -1,4 +1,4 @@
-@import "../../../css/DefineColor.css";
+@import "../../../../css/DefineColor.css";
 
 .card {
     background-color: var(--light);

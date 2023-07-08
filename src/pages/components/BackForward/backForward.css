@@ -9,4 +9,5 @@
     position: fixed;
     top: 100px;
     right: 45px;
+    cursor: pointer;
 }

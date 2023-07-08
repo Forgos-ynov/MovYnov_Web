@@ -1,13 +1,13 @@
-import "./card.css"
+import {Container, Desciption, Separator, TitleOne, TitleTwo} from "./CardComponents/CardComponents";
 
 function Card(props) {
     return (
-        <a href={"/" + props.path} className={"card"}>
-            <h4 className={"titleOne"}>{props.titleOne}</h4>
-            <hr className={"hr"}/>
-            <h5 className={"titleTwo"}>{props.titleTwo}</h5>
-            <h6 className={"description"}>{props.description}</h6>
-        </a>
+        <Container path={props.path}>
+            <TitleOne titleOne={props.titleOne}/>
+            <Separator/>
+            <TitleTwo titleTwo={props.titleTwo}/>
+            <Desciption description={props.description}/>
+        </Container>
     );
 }
 
