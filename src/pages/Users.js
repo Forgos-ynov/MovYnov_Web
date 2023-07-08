@@ -36,24 +36,30 @@ const Users = () => {
         )
     })
 
+    const _usersTable = () => {
+        return (
+            <table>
+                <thead>
+                <tr>
+                    <th className={"id"}>#</th>
+                    <th className={"pseudo"}>Pseudo</th>
+                    <th className={"email"}>Email</th>
+                    <th className={"spoilers"}>Spoiler</th>
+                    <th className={"trash"}></th>
+                </tr>
+                </thead>
+                <tbody>
+                {_users}
+                </tbody>
+            </table>
+            )
+    }
+
     return (
         <div className={"body"}>
             <Title title={"Gestion utilisateurs"}/>
             <BackForward/>
-            <table>
-                <thead>
-                    <tr>
-                        <th className={"id"}>#</th>
-                        <th className={"pseudo"}>Pseudo</th>
-                        <th className={"email"}>Email</th>
-                        <th className={"spoilers"}>Spoiler</th>
-                        <th className={"trash"}></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {_users}
-                </tbody>
-            </table>
+            {_usersTable()}
         </div>
     )
 }

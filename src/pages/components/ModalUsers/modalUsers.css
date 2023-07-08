@@ -70,6 +70,7 @@
     font-weight: 600;
     border: var(--warn-light) solid 1px;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .closeDisableButton {
@@ -82,6 +83,7 @@
     font-weight: 600;
     border: var(--warn-dark) solid 1px;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .buttonsModal {
