@@ -2,26 +2,29 @@ import React, {useEffect, useState} from "react";
 import Title from "./components/Title/Title";
 import "../css/users.css"
 import BackForward from "./components/BackForward/BackForward";
-import {retrieveAllUsers} from "../services/UserApi";
+import {retrieveAllUsers, retrieveAllUsersBySearching} from "../services/UserApi";
 import ModalUsers from "./components/ModalUsers/ModalUsers";
+import {useSearchParams} from "react-router-dom";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 const Users = () => {
     const [users, setUsers] = useState([])
+    const [searching, setSearching] = useState("")
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    /// urlSearchParams
-    /// useSearchParams -> react router dom
-
-    const fetchUsers = async () => {
-        try {
+    const fetchAllUsers = async () => {
+        if (searchParams.get("search") !== null) {
+            const data = await retrieveAllUsersBySearching(searchParams.get("search"));
+            setUsers(data);
+            setSearching(searchParams.get("search"))
+        } else {
             const data = await retrieveAllUsers();
             setUsers(data);
-        } catch (e) {
-            console.log(e);
         }
     }
 
     useEffect(() => {
-        fetchUsers();
+        fetchAllUsers();
     }, [])
 
     const _users = users.map((user) => {
@@ -31,7 +34,7 @@ const Users = () => {
                 <td className={"pseudo"}>{user.pseudo}</td>
                 <td className={"email"}>{user.email}</td>
                 <td className="spoilers">{user.spoilers ? "Oui" : "Non"}</td>
-                <td className={"trash"}><ModalUsers user={user} /></td>
+                <td className={"trash"}><ModalUsers user={user}/></td>
             </tr>
         )
     })
@@ -52,13 +55,14 @@ const Users = () => {
                 {_users}
                 </tbody>
             </table>
-            )
+        )
     }
 
     return (
         <div className={"body"}>
             <Title title={"Gestion utilisateurs"}/>
             <BackForward/>
+            <SearchBar searchNaming={"pseudo"} searching={searching}/>
             {_usersTable()}
         </div>
     )

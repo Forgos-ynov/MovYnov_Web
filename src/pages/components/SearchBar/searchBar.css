@@ -1,0 +1,34 @@
+@import "../../../css/DefineColor.css";
+
+.containerSearchBar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.inputSearch {
+    border: var(--dark) solid 1px;
+    border-radius: 10px;
+    height: 48px;
+    width: 375px;
+    padding-left: 10px;
+    color: var(--dark);
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 25px;
+}
+
+.inputSearch::placeholder {
+    color: var(--dark);
+}
+
+.buttonSearchBar {
+    border: var(--light) solid 1px;
+    border-radius: 5px;
+    background-color: var(--dark);
+    height: 48px;
+    width: 125px;
+    padding-left: 10px;
+    color: var(--light);
+    font-size: 18px;
+}

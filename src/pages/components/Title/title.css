@@ -1,7 +1,7 @@
 @import "../../../css/DefineColor.css";
 
 .title {
-    margin-top: 50px;
+    margin: 50px 0 20px 0;
     text-align: center;
     color: var(--light);
     font-size: 50px ;
