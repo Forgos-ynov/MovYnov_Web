@@ -11,7 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 export default function App() {
     return (
         <Routes>
-            <Route path="/login" element={<LoginPage />} index={true}/>
+            <Route path="/login" element={<LoginPage />} index/>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
             <Route path="/forums" element={<Forum />} />

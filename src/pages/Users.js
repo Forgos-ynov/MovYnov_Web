@@ -7,6 +7,8 @@ import UserApi from "../services/UserApi";
 const Users = () => {
     const [users, setUsers] = useState([])
 
+    /// urlSearchParams
+    /// useSearchParams -> react router dom
 
     const fetchUsers = async () => {
         try {
