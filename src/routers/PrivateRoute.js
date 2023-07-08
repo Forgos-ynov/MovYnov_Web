@@ -1,13 +1,11 @@
-import { Route } from 'react-router-dom';
-import LoginPage from "../pages/Login";
+import {Navigate, Outlet} from 'react-router-dom';
 import React from "react";
+import checkTokenIsAdmin from "../services/Auth";
 
-export default function PrivateRoute({ path, element }) {
-    const isAuthenticated = !!localStorage.getItem('token');
+export default function PrivateRoute() {
+    const isAuthenticated = checkTokenIsAdmin()
 
-    return isAuthenticated ? (
-        <Route path={path} element={element} />
-    ) : (
-        <Route path="/" element={<LoginPage />} />
-    );
+    return (
+        isAuthenticated ? <Outlet/> : <Navigate to={"/login"} />
+    )
 }

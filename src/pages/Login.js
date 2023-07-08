@@ -1,18 +1,18 @@
 import React, {useState} from "react";
 import "../css/login.css"
-import AuthApi from "../services/AuthApi";
-import { useNavigate  } from 'react-router-dom';
+import {login} from "../services/AuthApi";
+import {useNavigate} from 'react-router-dom';
 import Title from "./components/Title/Title";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate ();
+    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         try {
             e.preventDefault();
-            const token = await AuthApi.login(email, password);
+            const token = await login(email, password);
             localStorage.setItem("token", token);
             navigate("/");
         } catch (e) {

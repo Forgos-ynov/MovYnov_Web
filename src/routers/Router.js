@@ -11,11 +11,13 @@ import PrivateRoute from "./PrivateRoute";
 export default function App() {
     return (
         <Routes>
+            <Route element={<PrivateRoute/>}>
+                <Route path="/" element={<Home />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/forums" element={<Forum />} />
+                <Route path="/forums/:idPost" element={<Comments />} />
+            </Route>
             <Route path="/login" element={<LoginPage />} index/>
-            <Route path="/" element={<Home />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/forums" element={<Forum />} />
-            <Route path="/forums/:idPost" element={<Comments />} />
             <Route path="*" element={<Error404 />} />
         </Routes>
     );
