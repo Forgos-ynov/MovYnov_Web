@@ -6,11 +6,13 @@ import {retrieveAllUsers, retrieveAllUsersBySearching} from "../services/UserApi
 import ModalUsers from "./components/ModalUsers/ModalUsers";
 import {useSearchParams} from "react-router-dom";
 import SearchBar from "./components/SearchBar/SearchBar";
+import Pagination from "./components/Pagination/Pagination";
 
 const Users = () => {
     const [users, setUsers] = useState([])
     const [searching, setSearching] = useState("")
     const [searchParams, setSearchParams] = useSearchParams();
+    const elementByPage = 2
 
     const fetchAllUsers = async () => {
         if (searchParams.get("search") !== null) {
@@ -64,6 +66,7 @@ const Users = () => {
             <BackForward/>
             <SearchBar searchNaming={"pseudo"} searching={searching}/>
             {_usersTable()}
+            <Pagination elementNumber={users.length} elementByPage={elementByPage}/>
         </div>
     )
 }

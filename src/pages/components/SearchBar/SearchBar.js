@@ -1,26 +1,24 @@
 import "./searchBar.css"
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useSearchParams} from "react-router-dom";
+import {useState} from "react";
 
 function SearchBar(props) {
-    const navigate = useNavigate()
-    const [searching, setSearching] = useState("")
+    const [searching, setSearching] = useState(props.searching)
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    const fetchSearching = async () => {
-            await setSearching(props.searching)
-    }
+    const setQueryParam = (name, value) => {
+        const params = new URLSearchParams(searchParams);
+        params.set(name, value);
+        setSearchParams(params.toString());
+    };
 
-    useEffect(() => {
-        fetchSearching();
-    }, [])
-
-    const addQuery = e => {
-        e.preventDefault()
-        navigate("?search=" + searching)
-    }
+    const handleClick = (e) => {
+        e.preventDefault();
+        setQueryParam('search', searching);
+    };
 
     return (
-        <form className={"containerSearchBar"} onSubmit={addQuery}>
+        <form className={"containerSearchBar"} onSubmit={handleClick}>
             <input placeholder={"Recherche par " + props.searchNaming} className={"inputSearch"} type={"text"}
                    value={searching} onChange={e => setSearching(e.target.value)}/>
             <button className={"buttonSearchBar"} type={"submit"}>

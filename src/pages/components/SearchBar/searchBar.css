@@ -31,4 +31,5 @@
     padding-left: 10px;
     color: var(--light);
     font-size: 18px;
+    cursor: pointer;
 }
