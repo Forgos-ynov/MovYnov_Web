@@ -10,6 +10,8 @@ import Pagination from "./components/Pagination/Pagination";
 
 const Users = () => {
     const [users, setUsers] = useState([])
+    const [usersPaginate, setUsersPaginate] = useState([])
+    const [paginateDisplay, setPaginateDisplay] = useState(false)
     const [searching, setSearching] = useState("")
     const [searchParams, setSearchParams] = useSearchParams();
     const elementByPage = 2
@@ -19,9 +21,18 @@ const Users = () => {
             const data = await retrieveAllUsersBySearching(searchParams.get("search"));
             setUsers(data);
             setSearching(searchParams.get("search"))
+        } else if (searchParams.get("paginate") !== null) {
+            const paginateNumber = searchParams.get("paginate")
+            const users = await retrieveAllUsers();
+            const startIndex = (paginateNumber - 1) * elementByPage;
+            const endIndex = paginateNumber * elementByPage;
+            const data = users.slice(startIndex, endIndex)
+            setUsersPaginate(data);
+            setPaginateDisplay(true)
+            setUsers(users);
         } else {
-            const data = await retrieveAllUsers();
-            setUsers(data);
+            const users = await retrieveAllUsers();
+            setUsers(users);
         }
     }
 
@@ -29,17 +40,24 @@ const Users = () => {
         fetchAllUsers();
     }, [])
 
-    const _users = users.map((user) => {
-        return (
+    function generateUserRows(users) {
+        return users.map((user) => (
             <tr key={user.id}>
-                <td className={"id"}>{user.id}</td>
-                <td className={"pseudo"}>{user.pseudo}</td>
-                <td className={"email"}>{user.email}</td>
+                <td className="id">{user.id}</td>
+                <td className="pseudo">{user.pseudo}</td>
+                <td className="email">{user.email}</td>
                 <td className="spoilers">{user.spoilers ? "Oui" : "Non"}</td>
-                <td className={"trash"}><ModalUsers user={user}/></td>
+                <td className="trash">
+                    <ModalUsers user={user} />
+                </td>
             </tr>
-        )
-    })
+        ));
+    }
+
+
+    const _users = generateUserRows(users);
+    const _usersPaginate = generateUserRows(usersPaginate);
+
 
     const _usersTable = () => {
         return (
@@ -54,8 +72,9 @@ const Users = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {_users}
+                {paginateDisplay ? _usersPaginate : _users}
                 </tbody>
+
             </table>
         )
     }
@@ -63,7 +82,7 @@ const Users = () => {
     return (
         <div className={"body"}>
             <Title title={"Gestion utilisateurs"}/>
-            <BackForward/>
+            <BackForward path={"/"}/>
             <SearchBar searchNaming={"pseudo"} searching={searching}/>
             {_usersTable()}
             <Pagination elementNumber={users.length} elementByPage={elementByPage}/>

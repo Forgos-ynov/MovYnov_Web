@@ -1,10 +1,10 @@
 import "./backForward.css"
 import {useNavigate} from "react-router-dom";
 
-function BackForward() {
+function BackForward(props) {
     const navigate = useNavigate ();
     const backForward = function() {
-        navigate(-1)
+        navigate(props.path)
     };
 
     return (

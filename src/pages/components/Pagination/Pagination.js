@@ -3,8 +3,8 @@ import {useSearchParams} from "react-router-dom";
 import {useState, useEffect} from "react";
 
 function Pagination(props) {
-
     const conditionDisplayPagination = props.elementNumber > props.elementByPage
+    console.log(props.elementNumber)
     const pageOnPaginate = Math.ceil(props.elementNumber / props.elementByPage);
     const [searchParams, setSearchParams] = useSearchParams();
     const [paginateNumber, setPaginateNumber] = useState()
@@ -46,7 +46,6 @@ function Pagination(props) {
         return buttons;
     };
 
-
     return (
         conditionDisplayPagination && <div className={"pagination"}>
             <div className={"buttonsWrapperPaginate"}>
@@ -54,7 +53,8 @@ function Pagination(props) {
                         onClick={(e) => handleClick(e, paginateNumber > 1 ? paginateNumber - 1 : 1)}>Pre</button>
                 {_buttonPagesNavigation()}
                 <button className={"paginate-button paginationMoveButtonSuiv"}
-                        onClick={(e) => handleClick(e, paginateNumber+1)}>Suiv</button>
+                        onClick={(e) => handleClick(e, paginateNumber < pageOnPaginate ? paginateNumber + 1 : paginateNumber)}>
+                    Suiv</button>
             </div>
         </div>
     );
