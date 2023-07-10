@@ -1,0 +1,34 @@
+@import "./DefineColor.css";
+
+.comment-postForum {
+    background-color: var(--primary-dark);
+    width: 90%;
+    align-self: center;
+    margin-top: 48px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.comment-post {
+    background-color: var(--primary-light);
+    width: 85%;
+    align-self: center;
+    margin-top: 24px;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 5%;
+}
+
+.comment-postPseudoUser {
+    margin: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--warn-dark);
+}
+
+.comment-postTitle {
+    margin: 0 16px 45px 16px;
+    color: var(--warn-light);
+    font-size: 16px;
+    font-weight: 400;
+}

@@ -3,7 +3,7 @@ import Title from "./components/Title/Title";
 import "../css/users.css"
 import BackForward from "./components/BackForward/BackForward";
 import {retrieveAllUsers, retrieveAllUsersBySearching} from "../services/UserApi";
-import ModalUsers from "./components/ModalUsers/ModalUsers";
+import ModalUsers from "./components/Modal/ModalUsers/ModalUsers";
 import {useSearchParams} from "react-router-dom";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Pagination from "./components/Pagination/Pagination";

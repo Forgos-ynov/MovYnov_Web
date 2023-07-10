@@ -3,7 +3,7 @@ import "./modalUsers.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from "react-router-dom";
-import {disableUser} from "../../../services/UserApi";
+import {disableUser} from "../../../../services/UserApi";
 
 const ModalUsers = (props) => {
     const [isOpen, setIsOpen] = useState(false);
