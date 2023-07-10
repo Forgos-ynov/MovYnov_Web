@@ -8,10 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 .modal {
-    z-index: 2;
+    z-index: 10000;
     text-align: left;
     background-color: var(--light);
     border-radius: 15px;
@@ -37,7 +38,10 @@
     font-weight: 800;
 }
 
-.trash-icon {
+.exclamationTriangle-icon {
+    top: 13px;
+    right: 16px;
+    position:absolute;
     color: var(--warn-dark);
     cursor: pointer;
     background-color: inherit;

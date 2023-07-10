@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "./modalUsers.css";
+import "./modalDeleteUserComments.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from "react-router-dom";
 import {disableUser} from "../../../../services/UserApi";
 
 const ModalUsers = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [user, setUser] = useState(props.user)
+    const [comment, setComment] = useState(props.comment)
     const navigate = useNavigate();
 
     const openModal = () => {
@@ -19,15 +19,14 @@ const ModalUsers = (props) => {
 
     const disableUserClick = async e => {
         e.preventDefault();
-        console.log(user.id)
-        await disableUser(user.id);
-        navigate("/");
+        await disableUser(comment.idUser.id);
+        navigate("/forums");
     }
 
     return (
         <div>
-            <button onClick={openModal} className={"trash-icon"}>
-                <FontAwesomeIcon icon={faTrashAlt} style={{height: "20px"}} />
+            <button onClick={openModal} className={"exclamationTriangle-icon"}>
+                <FontAwesomeIcon icon={faExclamationTriangle} style={{height: "20px"}} />
             </button>
             {isOpen && (
                 <div className="modal-overlay">
@@ -35,9 +34,9 @@ const ModalUsers = (props) => {
             <span className="closeModalCross" onClick={closeModal}>
               &times;
             </span>
-                        <h2 className={"titleModal"}>Désactivation de l'utilisateur {user.pseudo}</h2>
+                        <h2 className={"titleModal"}>Désactiver l'utilisateur {comment.idUser.pseudo}</h2>
                         <hr className={"separatorHightModal"}/>
-                        <div className={"contentModal"}>Vous avez cliqué pour cliquer l'utilisateur sous le pseudonyme {user.pseudo}</div>
+                        <div className={"contentModal"}>Vous avez cliqué pour désactiver l'utilisateur sous le pseudonyme {comment.idUser.pseudo}</div>
                         <hr className={"separatorDownModal"}/>
                         <div className={"buttonsModal"}>
                             <button onClick={closeModal} className={"closeModalButton"}>Retour</button>

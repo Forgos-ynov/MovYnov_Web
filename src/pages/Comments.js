@@ -4,7 +4,9 @@ import BackForward from "./components/BackForward/BackForward";
 import React, {useEffect, useState} from "react";
 import {retrieveAllForumsComment} from "../services/ForumsCommentApi";
 import "../css/comments.css"
-import CardForumPost from "./components/Card/CardForumPost";
+import ModalSpoilersComments from "./components/Modal/ModalSpoilersComments/ModalSpoilersComments";
+import ModalDeleteComments from "./components/Modal/ModalDeleteUserComments/ModalDeleteUserComments";
+import ModalDeleteComment from "./components/Modal/ModalDeleteComment/ModalDeleteComment";
 
 const Comments = () => {
     const {idPost} = useParams()
@@ -24,7 +26,6 @@ const Comments = () => {
         if (!forum) {
             return null;
         }
-        console.log(comments)
         return (
             <div className={"comment-postForum"}>
                 <div className={"comment-postPseudoUser"}>Utilisateur: {forum.idUser.pseudo}</div>
@@ -37,6 +38,9 @@ const Comments = () => {
         <div className={"comment-post"}>
             <div className={"comment-postPseudoUser"}>Utilisateur: {comment.idUser.pseudo}</div>
             <div className={"comment-postTitle"}>{comment.content}</div>
+            <ModalSpoilersComments comment={comment}/>
+            <ModalDeleteComments comment={comment}/>
+            <ModalDeleteComment comment={comment}/>
         </div>
     ))
 

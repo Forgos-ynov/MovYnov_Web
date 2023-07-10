@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import "./modalUsers.css";
+import "./modalSpoilersComments.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from "react-router-dom";
-import {disableUser} from "../../../../services/UserApi";
+import {changeSpoiler} from "../../../../services/ForumsCommentApi";
 
 const ModalUsers = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [user, setUser] = useState(props.user)
+    const [comment, setComment] = useState(props.comment)
     const navigate = useNavigate();
+    let message = ""
 
     const openModal = () => {
         setIsOpen(true);
@@ -19,15 +20,20 @@ const ModalUsers = (props) => {
 
     const disableUserClick = async e => {
         e.preventDefault();
-        console.log(user.id)
-        await disableUser(user.id);
-        navigate("/");
+        await changeSpoiler(comment.id, !comment.spoilers);
+        navigate("/forums");
+    }
+
+    if (props.comment.spoilers) {
+        message = "Enlever"
+    } else {
+        message = "Mettre"
     }
 
     return (
-        <div>
-            <button onClick={openModal} className={"trash-icon"}>
-                <FontAwesomeIcon icon={faTrashAlt} style={{height: "20px"}} />
+        <div className={"icon-content"}>
+            <button onClick={openModal} className={"eye-icon"}>
+                <FontAwesomeIcon icon={props.comment.spoilers ? faEye : faEyeSlash} style={{height: "20px"}} />
             </button>
             {isOpen && (
                 <div className="modal-overlay">
@@ -35,13 +41,13 @@ const ModalUsers = (props) => {
             <span className="closeModalCross" onClick={closeModal}>
               &times;
             </span>
-                        <h2 className={"titleModal"}>Désactivation de l'utilisateur {user.pseudo}</h2>
+                        <h2 className={"titleModal"}>{message} le spoiler au commentaire</h2>
                         <hr className={"separatorHightModal"}/>
-                        <div className={"contentModal"}>Vous avez cliqué pour cliquer l'utilisateur sous le pseudonyme {user.pseudo}</div>
+                        <div className={"contentModal"}>Vous avez cliqué pour {message.toLowerCase()} le spoiler au commentaire de {comment.idUser.pseudo}</div>
                         <hr className={"separatorDownModal"}/>
                         <div className={"buttonsModal"}>
                             <button onClick={closeModal} className={"closeModalButton"}>Retour</button>
-                            <button onClick={disableUserClick} className={"closeDisableButton"}>Désactiver</button>
+                            <button onClick={disableUserClick} className={"closeDisableButton"}>{message}</button>
                         </div>
                     </div>
                 </div>

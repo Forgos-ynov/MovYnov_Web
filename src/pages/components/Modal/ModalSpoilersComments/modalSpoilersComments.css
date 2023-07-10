@@ -8,10 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 .modal {
-    z-index: 2;
+    z-index: 10000;
     text-align: left;
     background-color: var(--light);
     border-radius: 15px;
@@ -37,12 +38,18 @@
     font-weight: 800;
 }
 
-.trash-icon {
+.eye-icon {
     color: var(--warn-dark);
     cursor: pointer;
     background-color: inherit;
     border: none;
     outline: none;
+}
+
+.icon-content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
 }
 
 .separatorHightModal {

@@ -4,7 +4,6 @@ import {useState, useEffect} from "react";
 
 function Pagination(props) {
     const conditionDisplayPagination = props.elementNumber > props.elementByPage
-    console.log(props.elementNumber)
     const pageOnPaginate = Math.ceil(props.elementNumber / props.elementByPage);
     const [searchParams, setSearchParams] = useSearchParams();
     const [paginateNumber, setPaginateNumber] = useState()
