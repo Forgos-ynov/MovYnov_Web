@@ -9,7 +9,7 @@
 
 .body {
     display: flex;
-    height: 100vh;
+    height: 100%;
     background-color: var(--dark);
     flex-direction: column;
 }
