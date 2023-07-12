@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../css/login.css"
 import {login} from "../services/AuthApi";
 import {useNavigate} from 'react-router-dom';
@@ -7,6 +7,7 @@ import Title from "./components/Title/Title";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [tokenAdd, setTokenAdd] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
@@ -14,12 +15,27 @@ const Login = () => {
             e.preventDefault();
             const token = await login(email, password);
             localStorage.setItem("token", token);
-            navigate("/");
+            setTokenAdd(true)
         } catch (e) {
             alert("Indentifiants invalides")
             console.log(e)
         }
     }
+
+    const GoToHome = () => {
+        let hasRefresh = false
+        navigate("/");
+        if (!hasRefresh) {
+            window.location.reload()
+            hasRefresh = true
+        }
+    }
+
+    useEffect(() => {
+        if (tokenAdd) {
+            GoToHome()
+        }
+    }, [tokenAdd])
 
     return (
         <div className={"body"}>
