@@ -1,3 +1,5 @@
+Ce projet est la partie front, pour l'avoir dans sa globalitée vous devrez également avoir l'[API](https://github.com/Lord-forgos/MovYnov_API).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
