@@ -14,3 +14,13 @@ export function deleteForumPost (idForumPost) {
     return axios.delete("/forums/posts/" + idForumPost)
         .then(response => response);
 }
+
+export function changeSpoiler (idForumPost, spoilerStatus) {
+    return axios.put("/forums/posts/" + idForumPost, {"spoilers": spoilerStatus})
+        .then(response => response.data);
+}
+
+export function deletePostById (idForumPost) {
+    return axios.delete("/forums/posts/" + idForumPost)
+        .then(response => response.data);
+}

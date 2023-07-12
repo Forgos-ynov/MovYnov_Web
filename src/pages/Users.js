@@ -14,13 +14,15 @@ const Users = () => {
     const [paginateDisplay, setPaginateDisplay] = useState(false)
     const [searching, setSearching] = useState("")
     const [searchParams, setSearchParams] = useSearchParams();
-    const elementByPage = 2
+    const elementByPage = 20
 
     const fetchAllUsers = async () => {
         if (searchParams.get("search") !== null) {
-            const data = await retrieveAllUsersBySearching(searchParams.get("search"));
-            setUsers(data);
-            setSearching(searchParams.get("search"))
+            if (searchParams.get("search") !== "") {
+                const data = await retrieveAllUsersBySearching(searchParams.get("search"));
+                setUsers(data);
+                setSearching(searchParams.get("search"))
+            }
         } else if (searchParams.get("paginate") !== null) {
             const paginateNumber = searchParams.get("paginate")
             const users = await retrieveAllUsers();
@@ -38,7 +40,7 @@ const Users = () => {
 
     useEffect(() => {
         fetchAllUsers();
-    }, [])
+    }, [searchParams])
 
     function generateUserRows(users) {
         return users.map((user) => (

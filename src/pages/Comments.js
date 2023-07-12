@@ -5,8 +5,10 @@ import React, {useEffect, useState} from "react";
 import {retrieveAllForumsComment} from "../services/ForumsCommentApi";
 import "../css/comments.css"
 import ModalSpoilersComments from "./components/Modal/ModalSpoilersComments/ModalSpoilersComments";
-import ModalDeleteComments from "./components/Modal/ModalDeleteUserComments/ModalDeleteUserComments";
+import ModalDeleteUserComments from "./components/Modal/ModalDeleteUserComments/ModalDeleteUserComments";
 import ModalDeleteComment from "./components/Modal/ModalDeleteComment/ModalDeleteComment";
+import ModalSpoilersPost from "./components/Modal/ModalSpoilersPost/ModalSpoilersPost";
+import ModalDeletePost from "./components/Modal/ModalDeletePost/ModalDeletePost";
 
 const Comments = () => {
     const {idPost} = useParams()
@@ -24,12 +26,19 @@ const Comments = () => {
     const _forum = () => {
         const forum = comments[0]
         if (!forum) {
-            return null;
+            return (
+                <div className={"container-notComments"}>
+                    <h2 className={"message-notComments"}>Il n'y a aucun commentaires pour ce post.</h2>
+                </div>
+            )
         }
         return (
             <div className={"comment-postForum"}>
                 <div className={"comment-postPseudoUser"}>Utilisateur: {forum.idUser.pseudo}</div>
                 <div className={"comment-postTitle"}>{forum.idPost.title}</div>
+                <ModalDeleteUserComments comment={forum}/>
+                <ModalSpoilersPost comment={forum} />
+                <ModalDeletePost comment={forum}/>
             </div>
         )
     }
@@ -39,7 +48,7 @@ const Comments = () => {
             <div className={"comment-postPseudoUser"}>Utilisateur: {comment.idUser.pseudo}</div>
             <div className={"comment-postTitle"}>{comment.content}</div>
             <ModalSpoilersComments comment={comment}/>
-            <ModalDeleteComments comment={comment}/>
+            <ModalDeleteUserComments comment={comment}/>
             <ModalDeleteComment comment={comment}/>
         </div>
     ))

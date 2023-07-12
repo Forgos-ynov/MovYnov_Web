@@ -1,0 +1,98 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    z-index: 10000;
+    text-align: left;
+    background-color: var(--light);
+    border-radius: 15px;
+    max-width: 570px;
+    position: relative;
+    border: var(--primary-dark) solid 2px;
+}
+
+.closeModalCross {
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+    font-size: 30px;
+    width: 20px;
+    height: 20px;
+    color: var(--dark);
+}
+
+.titleModal {
+    color: var(--primary-dark);
+    margin: 16px 16px 0 16px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.trashComment-icon {
+    bottom: 13px;
+    right: 16px;
+    position:absolute;
+    color: var(--warn-dark);
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+.separatorHightModal {
+    border-color: var(--primary-dark);
+    margin: 16px 0;
+}
+
+.contentModal {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 16px;
+    color: var(--primary-light);
+}
+
+.separatorDownModal {
+    border-color: var(--primary-dark);
+    margin: 16px 0;
+}
+
+.closeModalButton {
+    background-color: var(--warn-light);
+    color: var(--light);
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    border: var(--warn-light) solid 1px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.closeDisableButton {
+    background-color: var(--warn-dark);
+    color: var(--light);
+    margin: 0 16px 16px 16px;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    border: var(--warn-dark) solid 1px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.buttonsModal {
+    display: flex;
+    justify-content: flex-end;
+}
+

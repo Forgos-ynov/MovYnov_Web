@@ -14,9 +14,11 @@ const Forum = () => {
 
     const fetchAllForumsPost = async () => {
         if (searchParams.get("search") !== null) {
-            const data = await retrieveAllForumsBySearching(searchParams.get("search"));
-            setForums(data);
-            setSearching(searchParams.get("search"))
+            if (searchParams.get("search") !== "") {
+                const data = await retrieveAllForumsBySearching(searchParams.get("search"));
+                setForums(data);
+                setSearching(searchParams.get("search"))
+            }
         } else {
             const data = await retrieveAllForums();
             setForums(data);
@@ -25,7 +27,7 @@ const Forum = () => {
 
     useEffect(() => {
         fetchAllForumsPost();
-    }, [])
+    }, [searchParams])
 
     const _forums = forums.map((forum) => (
         <CardForumPost path={"forums/" + forum.id} titleOne={forum.idForumCategory.title}
